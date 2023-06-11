@@ -47,6 +47,7 @@ async function run() {
 
     const userCollection = client.db("trainerAcDb").collection("users");
     const coursesCollection = client.db("trainerAcDb").collection("courses");
+    const trainersCollection = client.db("trainerAcDb").collection("trainers");
 
     app.post("/jwt", (req, res) => {
       const user = req.body;
@@ -124,6 +125,12 @@ async function run() {
     // courses api
     app.get("/courses", async (req, res) => {
       const result = await coursesCollection.find().toArray();
+      res.send(result);
+    });
+
+    // trainers api
+    app.get("/trainers", async (req, res) => {
+      const result = await trainersCollection.find().toArray();
       res.send(result);
     });
     app.patch("/users/trainer/:id", async (req, res) => {

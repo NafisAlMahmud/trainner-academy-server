@@ -43,11 +43,15 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const userCollection = client.db("trainerAcDb").collection("users");
     const coursesCollection = client.db("trainerAcDb").collection("courses");
     const trainersCollection = client.db("trainerAcDb").collection("trainers");
+
+    app.get("/test", async (req, res) => {
+      res.send("result");
+    });
 
     app.post("/jwt", (req, res) => {
       const user = req.body;
@@ -57,7 +61,7 @@ async function run() {
       res.send({ token });
     });
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
@@ -151,7 +155,7 @@ async function run() {
     // await client.close();
   }
 }
-run().catch(console.dir);
+run().catch(console.log);
 
 app.get("/", (req, res) => {
   res.send("boss is sitting");

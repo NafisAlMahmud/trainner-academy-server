@@ -63,7 +63,7 @@ async function run() {
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
+      "Pinged your deployment. You successfully connected to MongoDB! and server"
     );
     // user releted api
     app.get("/users", async (req, res) => {
@@ -151,7 +151,7 @@ async function run() {
       res.send(result);
     });
 
-    // trainer dashboard api
+    // trainer dashboard api and database
     app.get("/instructors", async (req, res) => {
       const query = { role: "instructor" };
       const result = await userCollection.find(query).toArray();

@@ -169,6 +169,16 @@ async function run() {
         res.status(500).send("Error creating new class");
       }
     });
+
+    app.get("/addTraining/myCourses/:email", async (req, res) => {
+      console.log(req.params.email);
+      const result = await coursesCollection
+        .find({
+          email: req.params.email,
+        })
+        .toArray();
+      res.send(result);
+    });
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

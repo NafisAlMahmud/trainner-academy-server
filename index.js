@@ -60,6 +60,7 @@ async function run() {
       });
       res.send({ token });
     });
+    // api start
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     console.log(
@@ -84,7 +85,7 @@ async function run() {
       res.send(result);
     });
 
-    // cart collection apis
+    // cart collection apis and data
     app.get("/carts", verifyJWT, async (req, res) => {
       const email = req.query.email;
 

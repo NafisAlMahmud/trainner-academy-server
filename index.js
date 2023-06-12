@@ -150,6 +150,25 @@ async function run() {
       const result = await userCollection.updateOne(filter, updateDoc);
       res.send(result);
     });
+
+    // trainer dashboard api
+    app.get("/instructors", async (req, res) => {
+      const query = { role: "instructor" };
+      const result = await userCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    // Create a new class
+    app.post("/addTraining", async (req, res) => {
+      const newClass = req.body;
+      try {
+        const result = await coursesCollection.insertOne(newClass);
+        res.send(result);
+      } catch (error) {
+        console.error("Error creating new class:", error);
+        res.status(500).send("Error creating new class");
+      }
+    });
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

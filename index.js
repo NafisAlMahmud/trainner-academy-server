@@ -92,12 +92,6 @@ async function run() {
       if (!email) {
         res.send([]);
       }
-      // app.get("/carts", verifyJWT, async (req, res) => {
-      //   const email = req.query.email;
-
-      //   if (!email) {
-      //     res.send([]);
-      //   }
 
       const decodedEmail = req.decoded.email;
       if (email !== decodedEmail) {
@@ -139,6 +133,8 @@ async function run() {
       res.send(result);
     });
 
+    // trainers api
+    // trainers api
     // trainers api
     app.get("/trainers", async (req, res) => {
       const result = await trainersCollection.find().toArray();

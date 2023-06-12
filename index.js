@@ -67,7 +67,7 @@ async function run() {
       "Pinged your deployment. You successfully connected to MongoDB! and server"
     );
     // user releted api
-    app.get("/users", async (req, res) => {
+    app.get("/users", verifyJWT, async (req, res) => {
       const result = await userCollection.find().toArray();
       res.send(result);
     });
